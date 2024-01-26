@@ -797,82 +797,82 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 17406: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
 "22 main.c
-[; ;main.c: 22:             break;
+[; ;main.c: 22:             LATBbits.LATB1 = 1;
 [p x FOSC  =  INTIO7     ]
 "23
-[; ;main.c: 23:         case 2:
+[; ;main.c: 23:             break;
 [p x PLLCFG  =  OFF      ]
 "24
-[; ;main.c: 24:             LATBbits.LATB2 = 1;
+[; ;main.c: 24:         case 2:
 [p x PRICLKEN  =  ON     ]
 "25
-[; ;main.c: 25:             break;
+[; ;main.c: 25:             LATBbits.LATB2 = 1;
 [p x FCMEN  =  OFF       ]
 "26
-[; ;main.c: 26:         case 3:
+[; ;main.c: 26:             break;
 [p x IESO  =  OFF        ]
 "29
-[; ;main.c: 29:         default:
+[; ;main.c: 29:             break;
 [p x PWRTEN  =  OFF      ]
 "30
-[; ;main.c: 30: 
+[; ;main.c: 30:         default:
 [p x BOREN  =  SBORDIS   ]
 "31
-[; ;main.c: 31:             break;
+[; ;main.c: 31: 
 [p x BORV  =  190        ]
 "34
-[; ;main.c: 34: 
+[; ;main.c: 34: }
 [p x WDTEN  =  OFF       ]
 "35
-[; ;main.c: 35: void turnOffLEDs() {
+[; ;main.c: 35: 
 [p x WDTPS  =  32768     ]
 "38
-[; ;main.c: 38:     LATBbits.LATB2 = 0;
+[; ;main.c: 38:     LATBbits.LATB1 = 0;
 [p x CCP2MX  =  PORTC1   ]
 "39
-[; ;main.c: 39:     LATBbits.LATB3 = 0;
+[; ;main.c: 39:     LATBbits.LATB2 = 0;
 [p x PBADEN  =  OFF      ]
 "40
-[; ;main.c: 40: }
+[; ;main.c: 40:     LATBbits.LATB3 = 0;
 [p x CCP3MX  =  PORTB5   ]
 "41
-[; ;main.c: 41: 
+[; ;main.c: 41: }
 [p x HFOFST  =  ON       ]
 "42
-[; ;main.c: 42: int main() {
+[; ;main.c: 42: 
 [p x T3CMX  =  PORTC0    ]
 "43
-[; ;main.c: 43:     __nop();
+[; ;main.c: 43: int main() {
 [p x P2BMX  =  PORTD2    ]
 "44
-[; ;main.c: 44:     TRISBbits.TRISB0 = 0;
+[; ;main.c: 44:     __nop();
 [p x MCLRE  =  EXTMCLR   ]
 "47
-[; ;main.c: 47:     TRISBbits.TRISB3 = 0;
+[; ;main.c: 47:     TRISBbits.TRISB2 = 0;
 [p x STVREN  =  ON       ]
 "48
-[; ;main.c: 48: 
+[; ;main.c: 48:     TRISBbits.TRISB3 = 0;
 [p x LVP  =  ON         ]
 "49
-[; ;main.c: 49:     turnOffLEDs();
+[; ;main.c: 49: 
 [p x XINST  =  OFF       ]
 "52
-[; ;main.c: 52:         for (int i = 0; i < 4; i++) {
+[; ;main.c: 52:     while (1) {
 [p x CP0  =  OFF         ]
 "53
-[; ;main.c: 53:             turnOnLED(i);
+[; ;main.c: 53:         for (int i = 0; i < 4; i++) {
 [p x CP1  =  OFF         ]
 "54
-[; ;main.c: 54:             delay__1s();
+[; ;main.c: 54:             turnOnLED(i);
 [p x CP2  =  OFF         ]
 "55
-[; ;main.c: 55:             turnOffLEDs();
+[; ;main.c: 55:             delay__1s();
 [p x CP3  =  OFF         ]
 "58
-[; ;main.c: 58: 
+[; ;main.c: 58:     }
 [p x CPB  =  OFF         ]
 "59
-[; ;main.c: 59:     return 0;
+[; ;main.c: 59: 
 [p x CPD  =  OFF         ]
 "62
 [p x WRT0  =  OFF        ]
@@ -905,7 +905,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "88
 [v _iterations `ui ~T0 @X0 1 a ]
-[e = _iterations -> -> 250000 `l `ui ]
+[e = _iterations -> -> 250 `i `ui ]
 "90
 {
 [v _i `ui ~T0 @X0 1 a ]
@@ -913,56 +913,56 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $U 860  ]
 [e :U 857 ]
 {
-"92
-[e ( __delay (1 -> * -> -> 4 `i `d / -> -> 1000000 `ul `d .4000000.0 `ul ]
 "93
+[e ( __delay (1 -> * -> -> 4 `i `d / -> -> 1000000 `ul `d .4000.0 `ul ]
+"94
 }
 [e ++ _i -> -> 1 `i `ui ]
 [e :U 860 ]
 [e $ < _i _iterations 857  ]
 [e :U 858 ]
 }
-"94
+"95
 [e :UE 856 ]
 }
-"96
+"97
 [v _turnOnLED `(v ~T0 @X0 1 ef1`i ]
 {
 [e :U _turnOnLED ]
 [v _ledNumber `i ~T0 @X0 1 r1 ]
 [f ]
-"97
+"98
 [e $U 863  ]
 {
-"98
-[e :U 864 ]
 "99
-[e = . . _LATBbits 0 0 -> -> 1 `i `uc ]
+[e :U 864 ]
 "100
-[e $U 862  ]
+[e = . . _LATBbits 0 0 -> -> 1 `i `uc ]
 "101
-[e :U 865 ]
+[e $U 862  ]
 "102
-[e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
+[e :U 865 ]
 "103
-[e $U 862  ]
+[e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
 "104
-[e :U 866 ]
+[e $U 862  ]
 "105
-[e = . . _LATBbits 0 2 -> -> 1 `i `uc ]
+[e :U 866 ]
 "106
-[e $U 862  ]
+[e = . . _LATBbits 0 2 -> -> 1 `i `uc ]
 "107
-[e :U 867 ]
+[e $U 862  ]
 "108
-[e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
+[e :U 867 ]
 "109
-[e $U 862  ]
+[e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
 "110
-[e :U 868 ]
-"112
 [e $U 862  ]
+"111
+[e :U 868 ]
 "113
+[e $U 862  ]
+"114
 }
 [e $U 862  ]
 [e :U 863 ]
@@ -972,47 +972,47 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 3 `i 867
  868 ]
 [e :U 862 ]
-"114
+"115
 [e :UE 861 ]
 }
-"116
+"117
 [v _turnOffLEDs `(v ~T0 @X0 1 ef ]
 {
 [e :U _turnOffLEDs ]
 [f ]
-"117
-[e = . . _LATBbits 0 0 -> -> 0 `i `uc ]
 "118
-[e = . . _LATBbits 0 1 -> -> 0 `i `uc ]
+[e = . . _LATBbits 0 0 -> -> 0 `i `uc ]
 "119
-[e = . . _LATBbits 0 2 -> -> 0 `i `uc ]
+[e = . . _LATBbits 0 1 -> -> 0 `i `uc ]
 "120
-[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
+[e = . . _LATBbits 0 2 -> -> 0 `i `uc ]
 "121
+[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
+"122
 [e :UE 869 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"123
+"124
 [v _main `(i ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"124
-[e ( ___nop ..  ]
 "125
-[e = . . _TRISBbits 0 0 -> -> 0 `i `uc ]
+[e ( ___nop ..  ]
 "126
-[e = . . _TRISBbits 0 1 -> -> 0 `i `uc ]
+[e = . . _TRISBbits 0 0 -> -> 0 `i `uc ]
 "127
-[e = . . _TRISBbits 0 2 -> -> 0 `i `uc ]
+[e = . . _TRISBbits 0 1 -> -> 0 `i `uc ]
 "128
+[e = . . _TRISBbits 0 2 -> -> 0 `i `uc ]
+"129
 [e = . . _TRISBbits 0 3 -> -> 0 `i `uc ]
-"130
+"131
 [e ( _turnOffLEDs ..  ]
-"132
+"133
 [e :U 872 ]
 {
-"133
+"134
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
@@ -1020,26 +1020,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $U 875  ]
 [e :U 874 ]
 {
-"134
-[e ( _turnOnLED (1 _i ]
 "135
-[e ( _delay__1s ..  ]
+[e ( _turnOnLED (1 _i ]
 "136
-[e ( _turnOffLEDs ..  ]
+[e ( _delay__1s ..  ]
 "137
+[e ( _turnOffLEDs ..  ]
+"138
 }
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 4 `i 874  ]
 [e :U 875 ]
 }
-"138
+"139
 }
 [e :U 871 ]
 [e $U 872  ]
 [e :U 873 ]
-"140
+"141
 [e ) -> 0 `i ]
 [e $UE 870  ]
-"141
+"142
 [e :UE 870 ]
 }

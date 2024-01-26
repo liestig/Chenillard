@@ -9888,11 +9888,12 @@ typedef int INT16_T;
 
 
 void delay__1s() {
-    unsigned int iterations = 250000;
+    unsigned int iterations = 250;
 
     for (unsigned int i = 0; i < iterations; i++) {
 
-        _delay((unsigned long)((4)*(1000000UL/4000000.0)));
+
+        _delay((unsigned long)((4)*(1000000UL/4000.0)));
     }
 }
 

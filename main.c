@@ -85,11 +85,12 @@
  * 
  */
 void delay__1s() {
-    unsigned int iterations = 250000;  // (1 seconde) / (4 µs par itération)
+    unsigned int iterations = 250;  // (1 seconde) / (4 ms par itération)
 
     for (unsigned int i = 0; i < iterations; i++) {
-        // Attendez 4 µs à chaque itération (le temps d'exécution d'une instruction)
-        __delay_us(4);
+        // Attendre 4 µs à chaque itération (le temps d'exécution d'une instruction)
+        //__delay_us(400);
+        __delay_ms(4);
     }
 }
 
