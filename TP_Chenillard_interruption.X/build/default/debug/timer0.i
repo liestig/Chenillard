@@ -9659,9 +9659,6 @@ unsigned char __t3rd16on(void);
 
 # 1 "./timer0.h" 1
 # 16 "./timer0.h"
-extern volatile unsigned char marche_arret;
-
-
 void initTimer0(void);
 # 2 "timer0.c" 2
 
@@ -9672,5 +9669,5 @@ void initTimer0() {
     TMR0L = 49911 & 0xFF;
     TMR0H = (49911 >> 8) & 0xFF;
     INTCONbits.TMR0IF = 0;
-    INTCONbits.TMR0IE = marche_arret;
+    INTCONbits.TMR0IE = 1;
 }

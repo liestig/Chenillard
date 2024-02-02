@@ -7,6 +7,6 @@ void initTimer0() {
     TMR0L = 49911 & 0xFF;   // Les 8 bits les moins significatifs
     TMR0H = (49911 >> 8) & 0xFF;  // Les 8 bits les plus significatifs
     INTCONbits.TMR0IF = 0; // Réinitialisation du flag d'overflow
-    INTCONbits.TMR0IE = marche_arret;  // Activer l'interruption Timer 0
+    INTCONbits.TMR0IE = 1;  // Activer l'interruption Timer 0
 }
 

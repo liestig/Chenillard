@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=r TP_Chenillard_interruption.X
+PROJECTNAME=TP_Chenillard_interruption.X
 
 # Active Configuration
 DEFAULTCONF=default

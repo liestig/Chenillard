@@ -12,9 +12,6 @@
 
 #include <xc.h>
 
-// Déclaration de la variable marche_arret
-extern volatile unsigned char marche_arret;
-
 // Prototypes des fonctions
 void initTimer0(void);
 

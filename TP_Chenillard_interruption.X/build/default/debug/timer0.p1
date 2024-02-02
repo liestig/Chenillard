@@ -27,9 +27,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16958
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 16958: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
 [v _INTCONbits `VS825 ~T0 @X0 0 e@4082 ]
-"16 ./timer0.h
-[; ;./timer0.h: 16: extern volatile unsigned char marche_arret;
-[v _marche_arret `Vuc ~T0 @X0 0 e ]
 "54 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 54: __asm("ANSELA equ 0F38h");
 [; <" ANSELA equ 0F38h ;# ">
@@ -808,8 +805,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;timer0.c: 9:     INTCONbits.TMR0IF = 0;
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
 "10
-[; ;timer0.c: 10:     INTCONbits.TMR0IE = marche_arret;
-[e = . . _INTCONbits 0 5 _marche_arret ]
+[; ;timer0.c: 10:     INTCONbits.TMR0IE = 1;
+[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
 "11
 [; ;timer0.c: 11: }
 [e :UE 854 ]

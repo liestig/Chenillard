@@ -9824,9 +9824,6 @@ typedef int INT16_T;
 
 # 1 "./timer0.h" 1
 # 16 "./timer0.h"
-extern volatile unsigned char marche_arret;
-
-
 void initTimer0(void);
 # 13 "main.c" 2
 
@@ -9896,42 +9893,24 @@ void initButton(void);
 
 
 
-volatile unsigned char marche_arret = 0;
+volatile int timerOverflowCount = 2;
 
-void __attribute__((picinterrupt(("")))) isr(void) {
-    if (INTCONbits.TMR0IF) {
-
-        INTCONbits.TMR0IF = 0;
-
-
-        if (marche_arret == 1) {
-            T0CONbits.TMR0ON = 1;
-        } else {
-            T0CONbits.TMR0ON = 0;
-        }
-    }
-
-    if (INTCONbits.INT0IF) {
-
-        INTCONbits.INT0IF = 0;
-
-
-        marche_arret = !marche_arret;
-    }
+void turnOffLEDs() {
+    LATBbits.LATB1 = 0;
+    LATBbits.LATB2 = 0;
+    LATBbits.LATB3 = 0;
 }
 
 void turnOnLED(int ledNumber) {
+    turnOffLEDs();
     switch (ledNumber) {
         case 0:
-            LATBbits.LATB0 = 1;
-            break;
-        case 1:
             LATBbits.LATB1 = 1;
             break;
-        case 2:
+        case 1:
             LATBbits.LATB2 = 1;
             break;
-        case 3:
+        case 2:
             LATBbits.LATB3 = 1;
             break;
         default:
@@ -9940,25 +9919,24 @@ void turnOnLED(int ledNumber) {
     }
 }
 
-void delay_1s_with_timer() {
-    while (!INTCONbits.TMR0IF) {
-
-    }
-    INTCONbits.TMR0IF = 0;
-    TMR0L = 49911 & 0xFF;
-    TMR0H = (49911 >> 8) & 0xFF;
+void __attribute__((picinterrupt(("")))) isr(void) {
+    if (!PORTBbits.RB0){
+        T0CONbits.TMR0ON = !T0CONbits.TMR0ON;
     }
 
-void turnOffLEDs() {
-    LATBbits.LATB0 = 0;
-    LATBbits.LATB1 = 0;
-    LATBbits.LATB2 = 0;
-    LATBbits.LATB3 = 0;
+    if (INTCONbits.TMR0IF){
+        INTCONbits.TMR0IF = 0;
+        TMR0L = 49911 & 0xFF;
+        TMR0H = (49911 >> 8) & 0xFF;
+        timerOverflowCount = (timerOverflowCount+1)%3;
+        turnOnLED(timerOverflowCount);
+    }
 }
+
 
 int main() {
     __nop();
-    TRISBbits.TRISB0 = 0;
+    TRISBbits.TRISB0 = 1;
     TRISBbits.TRISB1 = 0;
     TRISBbits.TRISB2 = 0;
     TRISBbits.TRISB3 = 0;
@@ -9969,11 +9947,7 @@ int main() {
     initButton();
 
     while (1) {
-        for (int i = 0; i < 4; i++) {
-            turnOnLED(i);
-            delay_1s_with_timer();
-            turnOffLEDs();
-        }
+        __nop();
     }
 
     return 0;

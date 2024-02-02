@@ -10,7 +10,7 @@
 #include <xc.h>
 #include "general.h"
 #include "leds.h"
-#include "timer0.h" // Inclure le fichier d'en-tête pour l'initialisation du Timer0
+#include "timer0.h" 
 #include "button.h"
 //#include "i2c.h"
 //#include "lcd.h"
@@ -82,42 +82,24 @@
 
 // #pragma config statements should precede project file includes.
 // Use project enums instead of #define for ON and OFF.
-volatile unsigned char marche_arret = 0;
+volatile int timerOverflowCount = 2;
 
-void __interrupt() isr(void) {
-    if (INTCONbits.TMR0IF) {
-        // Réinitialiser le drapeau d'interruption du Timer 0
-        INTCONbits.TMR0IF = 0;
-
-        // Mettre en marche ou arrêter le Timer 0 en fonction de la variable marche_arret
-        if (marche_arret == 1) {
-            T0CONbits.TMR0ON = 1;  // Mettre en marche le Timer 0
-        } else {
-            T0CONbits.TMR0ON = 0;  // Arrêter le Timer 0
-        }
-    }
-
-    if (INTCONbits.INT0IF) {
-        // Réinitialiser le drapeau d'interruption externe INT0
-        INTCONbits.INT0IF = 0;
-
-        // Inverser la valeur de la variable marche_arret
-        marche_arret = !marche_arret;
-    }
+void turnOffLEDs() {
+    LED1_STATE = 0;
+    LED2_STATE = 0;
+    LED3_STATE = 0;
 }
 
 void turnOnLED(int ledNumber) {
+    turnOffLEDs();
     switch (ledNumber) {
         case 0:
-            LED0_STATE = 1;
-            break;
-        case 1:
             LED1_STATE = 1;
             break;
-        case 2:
+        case 1:
             LED2_STATE = 1;
             break;
-        case 3:
+        case 2:
             LED3_STATE = 1;
             break;
         default:
@@ -126,25 +108,24 @@ void turnOnLED(int ledNumber) {
     }
 }
 
-void delay_1s_with_timer() {
-    while (!INTCONbits.TMR0IF) {
-        // Attendez que le flag d'overflow du Timer0 soit défini
+void __interrupt() isr(void) {
+    if (!PORTBbits.RB0){
+        T0CONbits.TMR0ON = !T0CONbits.TMR0ON;
     }
-    INTCONbits.TMR0IF = 0; // Réinitialisez le flag d'overflow pour la prochaine temporisation
-    TMR0L = 49911 & 0xFF;   // Les 8 bits les moins significatifs
-    TMR0H = (49911 >> 8) & 0xFF;  // Les 8 bits les plus significatifs
+    
+    if (INTCONbits.TMR0IF){
+        INTCONbits.TMR0IF = 0; // Réinitialisez le flag d'overflow pour la prochaine temporisation
+        TMR0L = 49911 & 0xFF;   // Les 8 bits les moins significatifs
+        TMR0H = (49911 >> 8) & 0xFF;  // Les 8 bits les plus significatifs
+        timerOverflowCount = (timerOverflowCount+1)%3;
+        turnOnLED(timerOverflowCount);
     }
-
-void turnOffLEDs() {
-    LED0_STATE = 0;
-    LED1_STATE = 0;
-    LED2_STATE = 0;
-    LED3_STATE = 0;
 }
+
 
 int main() {
     Nop();
-    LED0_DIR = 0; // Set RB0 as output
+    LED0_DIR = 1; // Set RB0 as output
     LED1_DIR = 0; // Set RB1 as output
     LED2_DIR = 0; // Set RB2 as output
     LED3_DIR = 0; // Set RB3 as output
@@ -155,11 +136,7 @@ int main() {
     initButton(); // Configurer l'interruption associée au bouton poussoir
 
     while (1) {
-        for (int i = 0; i < 4; i++) {
-            turnOnLED(i);
-            delay_1s_with_timer(); // Utilisez le Timer0 pour la temporisation
-            turnOffLEDs();
-        }
+        Nop();
     }
 
     return 0;
