@@ -7,8 +7,6 @@
       <itemPath>header.h</itemPath>
       <itemPath>general.h</itemPath>
       <itemPath>leds.h</itemPath>
-      <itemPath>timer0.h</itemPath>
-      <itemPath>button.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -18,8 +16,6 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>main.c</itemPath>
-      <itemPath>timer0.c</itemPath>
-      <itemPath>button.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -681,8 +677,6 @@
         <property key="periphComp4.gte" value="gt"/>
         <property key="periphComp5.gte" value="gt"/>
         <property key="periphComp6.gte" value="gt"/>
-        <property key="programmerToGoFilePath"
-                  value="C:/Users/Lies/MPLABXProjects/TP_Microcontrôleur_Mouisse_Mabile_Tiguercha.X/r TP_Chenillard_interruption.X/debug/default/TP_Microcontrôleur_Mouisse_Mabile_Tiguercha_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>
@@ -1199,8 +1193,6 @@
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-ffff"/>
-        <property key="programmerToGoFilePath"
-                  value="C:/Users/Lies/MPLABXProjects/TP_Microcontrôleur_Mouisse_Mabile_Tiguercha.X/TP_Chenillard_interruption.X/debug/default/TP_Microcontrôleur_Mouisse_Mabile_Tiguercha_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>

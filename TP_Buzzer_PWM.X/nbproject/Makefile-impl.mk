@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=TP_Chenillard
+PROJECTNAME=TP_Buzzer_PWM.X
 
 # Active Configuration
 DEFAULTCONF=default
