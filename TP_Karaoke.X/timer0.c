@@ -10,9 +10,9 @@ void init(unsigned char param1, unsigned char param2, unsigned char param3) {
 void delai() {
     while (1) //On entre dans une boucle infinie
     {
-        if (TMR0IF == 1) // Si le TMR0 a fini de compter ( Flag TMR0IF est leve )
+        if (INTCONbits.TMR0IF) // Si le TMR0 a fini de compter ( Flag TMR0IF est leve )
         {
-            TMR0IF = 0; //On a baisse le flag pour redemarrer le timer
+            INTCONbits.TMR0IF = 0; //On a baisse le flag pour redemarrer le timer
             return; //On quitte la boucle en retournant au programme principal
         }
     }

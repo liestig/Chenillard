@@ -6,10 +6,10 @@ Linker command line:
   --edf=C:\Program Files\Microchip\xc8\v2.45\pic\dat\20230818022343_en.msgs \
   -cn -h+dist/default/debug\TP_Karaoke.X.debug.sym \
   --cmf=dist/default/debug\TP_Karaoke.X.debug.cmf -z -Q18F46K22 \
-  -oC:\Users\Lies\AppData\Local\Temp\xcAs1m9g.\driver_tmp_3.o \
+  -oC:\Users\Lies\AppData\Local\Temp\xcAs28rs.\driver_tmp_3.o \
   --defsym=__MPLAB_BUILD=1 --fixupoverflow=error \
   -Mdist/default/debug/TP_Karaoke.X.debug.map \
-  --md=C:\Users\Lies\AppData\Local\Temp\xcAs1m9g.\driver_tmp_0.dat -E1 \
+  --md=C:\Users\Lies\AppData\Local\Temp\xcAs28rs.\driver_tmp_0.dat -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ACODE=00h-0FFFFh -ACONST=00h-0FFFFh \
   -ASMALLCONST=01000h-010FFhx240 -AMEDIUMCONST=01000h-0FFFFh \
   -ACOMRAM=01h-05Fh -AABS1=00h-0F37h -ABIGRAM=01h-0F37h \
@@ -29,7 +29,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\Lies\AppData\Local\Temp\xcAs1m9g.\driver_tmp_9.o \
+  C:\Users\Lies\AppData\Local\Temp\xcAs28rs.\driver_tmp_9.o \
   dist/default/debug\TP_Karaoke.X.debug.o 
 
 Object code version is 3.11
@@ -39,7 +39,7 @@ Machine type is 18F46K22
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Lies\AppData\Local\Temp\xcAs1m9g.\driver_tmp_9.o
+C:\Users\Lies\AppData\Local\Temp\xcAs28rs.\driver_tmp_9.o
                 config                           300000   300000        E        0       4
                 init                                  0        0        4        0       0
 dist/default/debug\TP_Karaoke.X.debug.o
@@ -241,6 +241,7 @@ WriteNibble@cmd            cstackCOMRAM 000003
 WriteNibble@data           cstackCOMRAM 000001
 _CCP1CON                   (abs)        000FBD
 _CCPR1L                    (abs)        000FBE
+_INTCONbits                (abs)        000FF2
 _LATBbits                  (abs)        000F8A
 _LATD                      (abs)        000F8C
 _LATDbits                  (abs)        000F8C
@@ -255,7 +256,6 @@ _ReadByte                  text15       00F900
 _T0CON                     (abs)        000FD5
 _T2CON                     (abs)        000FBA
 _TMR0H                     (abs)        000FD7
-_TMR0IF                    (abs)        007F92
 _TMR0L                     (abs)        000FD6
 _TRISBbits                 (abs)        000F93
 _TRISCbits                 (abs)        000F94

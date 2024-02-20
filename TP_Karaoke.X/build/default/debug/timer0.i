@@ -9674,9 +9674,9 @@ void init(unsigned char param1, unsigned char param2, unsigned char param3) {
 void delai() {
     while (1)
     {
-        if (TMR0IF == 1)
+        if (INTCONbits.TMR0IF)
         {
-            TMR0IF = 0;
+            INTCONbits.TMR0IF = 0;
             return;
         }
     }

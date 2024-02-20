@@ -192,8 +192,31 @@
 [v _TMR0L TMR0L `VEuc  1 e 1 @4054 ]
 "16226
 [v _TMR0H TMR0H `VEuc  1 e 1 @4055 ]
-"20292
-[v _TMR0IF TMR0IF `VEb  1 e 0 @32658 ]
+[s S451 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INT0IF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INT0IE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE_GIEL 1 0 :1:6 
+`uc 1 GIE_GIEH 1 0 :1:7 
+]
+"16958
+[s S460 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 INT0F 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INT0E 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+[s S469 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+[u S473 . 1 `S451 1 . 1 0 `S460 1 . 1 0 `S469 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES473  1 e 1 @4082 ]
 "119 C:\Users\Lies\MPLABXProjects\TP_Microcontrôleur_Mouisse_Mabile_Tiguercha.X\TP_Karaoke.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {

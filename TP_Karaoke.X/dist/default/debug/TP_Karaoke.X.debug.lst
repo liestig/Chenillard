@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.45 build 20230818022343 
-                                                                                               Tue Feb 20 10:50:20 2024
+                                                                                               Tue Feb 20 10:54:31 2024
 
 Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1 
      1                           	processor	18F46K22
@@ -336,7 +336,7 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
    322   000000                     _T0CON	set	4053
    323   000000                     _CCPR1L	set	4030
    324   000000                     _PR2	set	4027
-   325   000000                     _TMR0IF	set	32658
+   325   000000                     _INTCONbits	set	4082
    326   00FF41  30                 	db	48	;'0'
    327   00FF42  31                 	db	49	;'1'
    328   00FF43  32                 	db	50	;'2'
@@ -1351,16 +1351,16 @@ Microchip MPLAB XC8 C Compiler v2.45 (Free license) build 20230818022343 Og1
   1306                           	callstack 30
   1307   00F838                     l145:
   1308                           
-  1309                           ;timer0.c: 12:     {;timer0.c: 13:         if (TMR0IF == 1)
-  1310   00F838  A4F2               	btfss	4082,2,c	;volatile
+  1309                           ;timer0.c: 12:     {;timer0.c: 13:         if (INTCONbits.TMR0IF)
+  1310   00F838  A4F2               	btfss	242,2,c	;volatile
   1311   00F83A  EF21  F07C         	goto	u321
   1312   00F83E  EF23  F07C         	goto	u320
   1313   00F842                     u321:
   1314   00F842  EF1C  F07C         	goto	l145
   1315   00F846                     u320:
   1316   00F846                     
-  1317                           ;timer0.c: 14:         {;timer0.c: 15:             TMR0IF = 0;
-  1318   00F846  94F2               	bcf	4082,2,c	;volatile
+  1317                           ;timer0.c: 14:         {;timer0.c: 15:             INTCONbits.TMR0IF = 0;
+  1318   00F846  94F2               	bcf	242,2,c	;volatile
   1319   00F848  0012               	return		;funcret
   1320   00F84A                     __end_of_delai:
   1321                           	callstack 0
@@ -2862,7 +2862,7 @@ CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V2.45 build 20230818022343 
-Symbol Table                                                                                   Tue Feb 20 10:50:20 2024
+Symbol Table                                                                                   Tue Feb 20 10:54:31 2024
 
                        l31 F85A                         l40 F9E2                         l41 F9E8  
                        l34 F814                         l42 F9EE                ?_LCDPutChar 0001  
@@ -2959,44 +2959,44 @@ Symbol Table                                                                    
          __end_of_ReadByte F930                     ??_main 000C                     ??_init 0003  
             __activetblptr 0002                  ??_LCDInit 0004    __end_of_LCDShiftDisplay F8D6  
                    ?_delai 0001                     _CCPR1L 0FBE           ___awdiv@dividend 0001  
-                   _TMR0IF 7F92                  ??_WaitLCD 0002                  ??___awdiv 0005  
-         __end_of_initLEDs F85C          main@nbCharByTempo 0258           ___awdiv@quotient 0007  
-                   isa$std 0001               __mediumconst FE38                     tblptrh 0FF7  
-             LCDWriteStr@i 000B                     tblptrl 0FF6                     tblptru 0FF8  
-                ?_LCDClear 0001                 __accesstop 0060    __end_of__initialization F8F6  
-            ___rparam_used 0001             __pcstackCOMRAM 0001             WriteNibble@cmd 0003  
-             __pidataBANK2 F97C              __end_of_delai F84A               ??_LCDPutChar 0006  
-         ?_LCDShiftDisplay 0001                    ??_delai 0001               WriteByte@cmd 0005  
-               ??_LCDClear 0006                  ?_ReadByte 0001         __end_of_LCDPutChar F838  
-             ?_turnOffLEDs 0001              ??_WriteNibble 0002                    _CCP1CON 0FBD  
-        __end_of_WriteByte F876                    _LCDInit FB72                  ?_initLEDs 0001  
-               ??_ReadByte 0001                    __Hparam 0000                    _WaitLCD F876  
-                  __Lparam 0000                    ___awdiv FAAE                    __pcinit F8D6  
-                  __ramtop 1000                    __ptext0 FC5A                    __ptext1 F9D4  
-                  __ptext2 F80C                    __ptext3 F84A                    __ptext4 F816  
-                  __ptext5 F838                    __ptext6 FAAE                    __ptext7 FA32  
-                  __ptext8 F826                    __ptext9 F8B2        __end_of_WriteNibble F97C  
-     end_of_initialization F8F6                 ??_initLEDs 0001              __Lmediumconst FE38  
-        __end_ofmain@F6062 FEE9          __end_ofmain@F6064 FE91          __end_ofmain@F6058 FF41  
-        LCDWriteStr@string 0007                    postdec1 0FE5                    postdec2 0FDD  
-                  postinc0 0FEE                    postinc2 0FDE          __end_of_turnOnLED FA32  
-                _TRISBbits 0F93                  _TRISCbits 0F94                  _TRISDbits 0F95  
-          WriteNibble@data 0001                _WriteNibble F930        start_initialization F8D6  
-            ??_LCDWriteStr 0009                 init@param1 0003                 init@param2 0001  
-               init@param3 0002                __pdataBANK2 0200    main@ledNumberToSwitchOn 0010  
-       turnOnLED@ledNumber 0001                   ?_LCDInit 0001              WriteByte@data 0004  
-            __pcstackBANK0 0060              __pcstackBANK1 0100              __pcstackBANK2 0258  
-                _WriteByte F85C             LCDPutChar@data 0006        __end_of_LCDWriteStr FAAE  
-                 ?_WaitLCD 0001              __pmediumconst FE38                   ?___awdiv 0001  
-               ?_WriteByte 0004                   _LCDClear F892                   _LATBbits 0F8A  
-                 _LATDbits 0F8C                  main@F6060 0200                  main@F6062 FE91  
-                main@F6064 FE39                  main@F6058 FEE9                  main@PAUSE 000E  
-                main@notes 0158                  main@tempo 0100                  _turnOnLED F9D4  
-              _LCDWriteStr FA32                  copy_data0 F8EA                   _ReadByte F900  
-                 __Hrparam 0000          ??_LCDShiftDisplay 0006                   __Lrparam 0000  
-             ?_WriteNibble 0001                 ?_turnOnLED 0001                ??_WriteByte 0005  
-                 __ptext10 FB72                   __ptext11 F892                   __ptext12 F85C  
-                 __ptext13 F930                   __ptext14 F876                   __ptext15 F900  
-                 _initLEDs F84A              ??_turnOffLEDs 0001                   isa$xinst 0000  
-           ReadByte@status 0001                 _LCDPutChar F826        __end_of_turnOffLEDs F816  
+                ??_WaitLCD 0002                  ??___awdiv 0005           __end_of_initLEDs F85C  
+        main@nbCharByTempo 0258           ___awdiv@quotient 0007                     isa$std 0001  
+             __mediumconst FE38                     tblptrh 0FF7               LCDWriteStr@i 000B  
+                   tblptrl 0FF6                     tblptru 0FF8                  ?_LCDClear 0001  
+               __accesstop 0060    __end_of__initialization F8F6              ___rparam_used 0001  
+           __pcstackCOMRAM 0001             WriteNibble@cmd 0003               __pidataBANK2 F97C  
+            __end_of_delai F84A               ??_LCDPutChar 0006           ?_LCDShiftDisplay 0001  
+                  ??_delai 0001               WriteByte@cmd 0005                 ??_LCDClear 0006  
+                ?_ReadByte 0001         __end_of_LCDPutChar F838               ?_turnOffLEDs 0001  
+            ??_WriteNibble 0002                    _CCP1CON 0FBD          __end_of_WriteByte F876  
+                  _LCDInit FB72                  ?_initLEDs 0001                 ??_ReadByte 0001  
+                  __Hparam 0000                    _WaitLCD F876                    __Lparam 0000  
+                  ___awdiv FAAE                    __pcinit F8D6                    __ramtop 1000  
+                  __ptext0 FC5A                    __ptext1 F9D4                    __ptext2 F80C  
+                  __ptext3 F84A                    __ptext4 F816                    __ptext5 F838  
+                  __ptext6 FAAE                    __ptext7 FA32                    __ptext8 F826  
+                  __ptext9 F8B2        __end_of_WriteNibble F97C       end_of_initialization F8F6  
+               ??_initLEDs 0001              __Lmediumconst FE38          __end_ofmain@F6062 FEE9  
+        __end_ofmain@F6064 FE91          __end_ofmain@F6058 FF41          LCDWriteStr@string 0007  
+                  postdec1 0FE5                    postdec2 0FDD                    postinc0 0FEE  
+                  postinc2 0FDE          __end_of_turnOnLED FA32                  _TRISBbits 0F93  
+                _TRISCbits 0F94                  _TRISDbits 0F95            WriteNibble@data 0001  
+              _WriteNibble F930        start_initialization F8D6              ??_LCDWriteStr 0009  
+               init@param1 0003                 init@param2 0001                 init@param3 0002  
+              __pdataBANK2 0200    main@ledNumberToSwitchOn 0010         turnOnLED@ledNumber 0001  
+                 ?_LCDInit 0001              WriteByte@data 0004              __pcstackBANK0 0060  
+            __pcstackBANK1 0100              __pcstackBANK2 0258                  _WriteByte F85C  
+           LCDPutChar@data 0006        __end_of_LCDWriteStr FAAE                   ?_WaitLCD 0001  
+            __pmediumconst FE38                   ?___awdiv 0001                 ?_WriteByte 0004  
+                 _LCDClear F892                   _LATBbits 0F8A                   _LATDbits 0F8C  
+                main@F6060 0200                  main@F6062 FE91                  main@F6064 FE39  
+                main@F6058 FEE9                  main@PAUSE 000E                  main@notes 0158  
+                main@tempo 0100                  _turnOnLED F9D4                _LCDWriteStr FA32  
+                copy_data0 F8EA                   _ReadByte F900                   __Hrparam 0000  
+        ??_LCDShiftDisplay 0006                   __Lrparam 0000               ?_WriteNibble 0001  
+               ?_turnOnLED 0001                ??_WriteByte 0005                   __ptext10 FB72  
+                 __ptext11 F892                   __ptext12 F85C                   __ptext13 F930  
+                 __ptext14 F876                   __ptext15 F900                   _initLEDs F84A  
+            ??_turnOffLEDs 0001                   isa$xinst 0000             ReadByte@status 0001  
+               _LCDPutChar F826                 _INTCONbits 0FF2        __end_of_turnOffLEDs F816  
 LCDShiftDisplay@shiftCount 0006                ??_turnOnLED 0003  
