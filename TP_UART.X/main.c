@@ -2,6 +2,7 @@
 #include <stdio.h> // Pour sprintf
 #include "lcd.h"
 #include "uart.h"
+#include "general.h"
 
 // CONFIG1H
 #pragma config FOSC = INTIO7    // Oscillator Selection bits (Internal oscillator block, CLKOUT function on OSC2)
@@ -63,67 +64,36 @@
 // CONFIG7H
 #pragma config EBTRB = OFF      // Boot Block Table Read Protection bit (Boot Block (000000-0007FFh) not protected from table reads executed in other blocks)
 
-#define _XTAL_FREQ 1000000UL // Définir la fréquence du microcontrôleur (1 MHz)
 
-// Fonctions pour afficher un message sur l'écran LCD
-void display_message(const char *message) {
-    LCDClear(); // Efface l'écran LCD
-    LCDWriteStr(message); // Affiche le message sur l'écran LCD
-}
 
-// Fonction pour initialiser l'EUSART
-void init_UART() {
-    // Configurer les broches TxD (RC6) et RxD (RC7) comme entrées/sorties
-    TRISCbits.TRISC6 = 0; // TxD (sortie)
-    TRISCbits.TRISC7 = 1; // RxD (entrée)
-
-    // Configurer l'EUSART en mode asynchrone, 8 bits de données, 1 bit de stop
-    TXSTA1 = 0b00100100; // BRGH=1 pour haute vitesse, TXEN=1 pour activer la transmission
-    RCSTA1 = 0b10010000; // SPEN=1 pour activer le port série, CREN=1 pour activer la réception
-
-    // Calculer la valeur de SPBRG en fonction de la fréquence d'horloge et du débit de transmission
-    SPBRG1 = (_XTAL_FREQ / (16UL * 9600)) - 1;
-}
-
-// Fonction pour transmettre un caractère via l'EUSART
-void UARTWriteChar(char data) {
-    while (!TXSTAbits.TRMT); // Attendre que le tampon de transmission soit vide
-    TXREG1 = data; // Écrire le caractère à transmettre dans le registre de transmission
-}
-
-// Fonction pour afficher un nombre entier sur l'écran LCD
-void display_counter(int count) {
-    char buffer[17];
-    sprintf(buffer, "Compteur: %d", count);
-    LCDGoto(0, 1); // Positionner le curseur à la ligne 2
-    LCDWriteStr(buffer); // Afficher le compteur sur l'écran LCD
-}
 
 void main() {
-    // Initialiser l'écran LCD
+    // Activation de l'écran LCD
+    LCD_ON();
+    // Initialisation de l'écran LCD
     LCDInit();
-    
-    // Initialiser l'EUSART
-    init_UART();
-    
-    // Afficher un message d'initialisation sur l'écran LCD
-    display_message("UART 9600 bauds");
+    // Initialisation de l'EUSART
+    UARTInit(9600);
+    int t = 0; // Variable pour la transmission 
+    int r; // Variable pour la réception
 
-    // Déclarer une variable pour le compteur
-    int counter = 0;
-    
     // Boucle infinie
     while (1) {
-        // Afficher le compteur sur l'écran LCD
-        display_counter(counter);
-        
-        // Incrémenter le compteur
-        counter++;
-        
-        // Temporisation (facultatif)
+        // Envoi d'un caractère via UART
+        UARTWriteByte(t%26+97); // 26 pour les 26 lettres de l'alphabet, et 97 pour la valeur ascii de 'a'
+        // Réception d'un caractère via UART
+        r = UARTReadByte();
+        // Positionnement du curseur LCD en haut à gauche
+        LCDGoto(0,0);
+        // Affichage du texte "Compteur: " sur l'écran LCD
+        LCDWriteStr("Compteur: ");
+        // Positionnement du curseur LCD à la 8ème colonne
+        LCDGoto(0,8);
+        // Affichage du caractère reçu sur l'écran LCD
+        LCDPutChar(r);
+        // Incrémentation de la variable de transmission
+        t++;
+        // Pause de 500 millisecondes
         __delay_ms(500);
-        
-        // Transmettre le compteur via l'EUSART
-        UARTWriteChar((char)(counter + '0')); // Convertir le compteur en caractère et l'envoyer
     }
 }

@@ -9898,31 +9898,29 @@ _Bool increase = 1;
 
 void configurePWM() {
 
-    TRISCbits.TRISC2 = 0;
-
-
     CCP1CONbits.CCP1M = 0b1100;
-    CCP1CONbits.DC1B = 0;
     CCPR1L = 128;
 
+    T2CONbits.TMR2ON = 0;
 
-    T2CON = 0b00000100;
+    T2CONbits.T2CKPS = 0b00;
+
+    T2CONbits.T2OUTPS = 0b0000;
+
+    TRISCbits.TRISC2 = 0;
+
+    T2CONbits.TMR2ON = 1;
+
 }
-
 void main() {
     configurePWM();
 
     while(1) {
-        if (increase) {
-            CCPR1L = 128;
-        } else {
-            CCPR1L = 64;
-        }
-
-
-        increase = !increase;
-
-
-        _delay((unsigned long)((500)*(1000000UL/4000.0)));
+        PR2 = 71;
+        CCPR1L = 36;
+        _delay((unsigned long)((1000)*(1000000UL/4000.0)));
+        PR2 = 142;
+        CCPR1L = 71;
+        _delay((unsigned long)((1000)*(1000000UL/4000.0)));
     }
 }

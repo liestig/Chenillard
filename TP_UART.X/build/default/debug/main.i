@@ -9843,6 +9843,7 @@ void UARTWriteByte(UINT8_T data);
 
 
 
+
 #pragma config FOSC = INTIO7
 #pragma config PLLCFG = OFF
 #pragma config PRICLKEN = ON
@@ -9905,64 +9906,33 @@ void UARTWriteByte(UINT8_T data);
 
 
 
-void display_message(const char *message) {
-    LCDClear();
-    LCDWriteStr(message);
-}
-
-
-void init_UART() {
-
-    TRISCbits.TRISC6 = 0;
-    TRISCbits.TRISC7 = 1;
-
-
-    TXSTA1 = 0b00100100;
-    RCSTA1 = 0b10010000;
-
-
-    SPBRG1 = (1000000UL / (16UL * 9600)) - 1;
-}
-
-
-void UARTWriteChar(char data) {
-    while (!TXSTAbits.TRMT);
-    TXREG1 = data;
-}
-
-
-void display_counter(int count) {
-    char buffer[17];
-    sprintf(buffer, "Compteur: %d", count);
-    LCDGoto(0, 1);
-    LCDWriteStr(buffer);
-}
-
 void main() {
+
+    LATDbits.LATD7 = 1;
 
     LCDInit();
 
-
-    init_UART();
-
-
-    display_message("UART 9600 bauds");
-
-
-    int counter = 0;
+    UARTInit(9600);
+    int t = 0;
+    int r;
 
 
     while (1) {
 
-        display_counter(counter);
+        UARTWriteByte(t%26+97);
 
+        r = UARTReadByte();
 
-        counter++;
+        LCDGoto(0,0);
 
+        LCDWriteStr("Compteur: ");
+
+        LCDGoto(0,8);
+
+        LCDPutChar(r);
+
+        t++;
 
         _delay((unsigned long)((500)*(1000000UL/4000.0)));
-
-
-        UARTWriteChar((char)(counter + '0'));
     }
 }

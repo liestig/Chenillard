@@ -1,6 +1,6 @@
 /* 
  * File:   main.c
- * Author: Lies
+ * Author: Liès TIGUERCHA, Clement MABILE, Théo MOUISSE
  *
  * Created on January 26, 2024, 8:56 AM
  */
@@ -12,8 +12,6 @@
 #include "leds.h"
 #include "timer0.h" 
 #include "button.h"
-//#include "i2c.h"
-//#include "lcd.h"
 
 
 // PIC18F46K22 Configuration Bit Settings
@@ -115,8 +113,8 @@ void __interrupt() isr(void) {
     
     if (INTCONbits.TMR0IF){
         INTCONbits.TMR0IF = 0; // Réinitialisez le flag d'overflow pour la prochaine temporisation
-        TMR0L = 49911 & 0xFF;   // Les 8 bits les moins significatifs
-        TMR0H = (49911 >> 8) & 0xFF;  // Les 8 bits les plus significatifs
+        TMR0L = 0xEE;   // Les 8 bits les moins significatifs
+        TMR0H = 0xDC;  // Les 8 bits les plus significatifs
         timerOverflowCount = (timerOverflowCount+1)%3;
         turnOnLED(timerOverflowCount);
     }

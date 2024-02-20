@@ -9831,7 +9831,14 @@ void initTimer0(void);
 # 15 "./button.h"
 void initButton(void);
 # 14 "main.c" 2
-# 24 "main.c"
+
+
+
+
+
+
+
+
 #pragma config FOSC = INTIO7
 #pragma config PLLCFG = OFF
 #pragma config PRICLKEN = ON
@@ -9926,8 +9933,8 @@ void __attribute__((picinterrupt(("")))) isr(void) {
 
     if (INTCONbits.TMR0IF){
         INTCONbits.TMR0IF = 0;
-        TMR0L = 49911 & 0xFF;
-        TMR0H = (49911 >> 8) & 0xFF;
+        TMR0L = 0xEE;
+        TMR0H = 0xDC;
         timerOverflowCount = (timerOverflowCount+1)%3;
         turnOnLED(timerOverflowCount);
     }

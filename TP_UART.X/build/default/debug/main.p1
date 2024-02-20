@@ -1,66 +1,41 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"39 ./lcd.h
-[; ;./lcd.h: 39: void LCDClear(void);
-[v _LCDClear `(v ~T0 @X0 0 ef ]
-"43
-[; ;./lcd.h: 43: void LCDWriteStr(const char *Str);
-[v _LCDWriteStr `(v ~T0 @X0 0 ef1`*Cuc ]
-"8515 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 8515:     struct {
-[s S407 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S407 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
-"8525
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 8525:     struct {
-[s S408 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S408 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
-"8514
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 8514: typedef union {
-[u S406 `S407 1 `S408 1 ]
-[n S406 . . . ]
-"8536
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 8536: extern volatile TRISCbits_t TRISCbits __attribute__((address(0xF94)));
-[v _TRISCbits `VS406 ~T0 @X0 0 e@3988 ]
-"10835
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 10835: extern volatile unsigned char TXSTA1 __attribute__((address(0xFAC)));
-[v _TXSTA1 `Vuc ~T0 @X0 0 e@4012 ]
-"10379
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 10379: extern volatile unsigned char RCSTA1 __attribute__((address(0xFAB)));
-[v _RCSTA1 `Vuc ~T0 @X0 0 e@4011 ]
-"11366
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 11366: extern volatile unsigned char SPBRG1 __attribute__((address(0xFAF)));
-[v _SPBRG1 `Vuc ~T0 @X0 0 e@4015 ]
-"10970
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 10970:     struct {
-[s S507 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S507 . TX9D TRMT BRGH SENDB SYNC TXEN TX9 CSRC ]
-"10980
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 10980:     struct {
-[s S508 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S508 . TX9D1 TRMT1 BRGH1 SENDB1 SYNC1 TXEN1 TX91 CSRC1 ]
-"10990
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 10990:     struct {
-[s S509 :1 `uc 1 :5 `uc 1 :1 `uc 1 ]
-[n S509 . TXD8 . TX8_9 ]
-"10969
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 10969: typedef union {
-[u S506 `S507 1 `S508 1 `S509 1 ]
-[n S506 . . . . ]
-"10996
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 10996: extern volatile TXSTAbits_t TXSTAbits __attribute__((address(0xFAC)));
-[v _TXSTAbits `VS506 ~T0 @X0 0 e@4012 ]
-"11210
-[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 11210: extern volatile unsigned char TXREG1 __attribute__((address(0xFAD)));
-[v _TXREG1 `Vuc ~T0 @X0 0 e@4013 ]
-"121 C:\Program Files\Microchip\xc8\v2.45\pic\include\c99\stdio.h
-[; ;C:\Program Files\Microchip\xc8\v2.45\pic\include\c99\stdio.h: 121: int sprintf(char *restrict, const char *restrict, ...);
-[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
+[p mainexit ]
+"7902 C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 7902:     struct {
+[s S389 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S389 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
+"7912
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 7912:     struct {
+[s S390 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S390 . LD0 LD1 LD2 LD3 LD4 LD5 LD6 LD7 ]
+"7901
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 7901: typedef union {
+[u S388 `S389 1 `S390 1 ]
+[n S388 . . . ]
+"7923
+[; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 7923: extern volatile LATDbits_t LATDbits __attribute__((address(0xF8C)));
+[v _LATDbits `VS388 ~T0 @X0 0 e@3980 ]
+"38 ./lcd.h
+[; ;./lcd.h: 38: void LCDInit(void);
+[v _LCDInit `(v ~T0 @X0 0 ef ]
+"14 ./uart.h
+[; ;./uart.h: 14: void UARTInit(UINT16_T baudRate);
+[v _UARTInit `(v ~T0 @X0 0 ef1`ui ]
+"16
+[; ;./uart.h: 16: void UARTWriteByte(UINT8_T data);
+[v _UARTWriteByte `(v ~T0 @X0 0 ef1`uc ]
+"15
+[; ;./uart.h: 15: UINT8_T UARTReadByte(void);
+[v _UARTReadByte `(uc ~T0 @X0 0 ef ]
 "40 ./lcd.h
 [; ;./lcd.h: 40: void LCDGoto(UINT8_T Pos,UINT8_T Ln);
 [v _LCDGoto `(v ~T0 @X0 0 ef2`uc`uc ]
-[p mainexit ]
-"38
-[; ;./lcd.h: 38: void LCDInit(void);
-[v _LCDInit `(v ~T0 @X0 0 ef ]
+"43
+[; ;./lcd.h: 43: void LCDWriteStr(const char *Str);
+[v _LCDWriteStr `(v ~T0 @X0 0 ef1`*Cuc ]
+"41
+[; ;./lcd.h: 41: void LCDPutChar(UINT8_T Data);
+[v _LCDPutChar `(v ~T0 @X0 0 ef1`uc ]
 [v F205 `(v ~T0 @X0 1 tf1`ul ]
 "20 C:\Program Files\Microchip\xc8\v2.45\pic\include\builtins.h
 [v __delay `JF205 ~T0 @X0 0 e ]
@@ -824,218 +799,141 @@ Version 4.0 HI-TECH Software Intermediate Code
 "17406
 [; ;C:/Program Files/Microchip/MPLABX/v6.15/packs/Microchip/PIC18F-K_DFP/1.11.281/xc8\pic\include\proc\pic18f46k22.h: 17406: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"7 main.c
-[; ;main.c: 7: 
-[p x FOSC  =  INTIO7     ]
-"8
+"8 main.c
 [; ;main.c: 8: 
-[p x PLLCFG  =  OFF      ]
+[p x FOSC  =  INTIO7     ]
 "9
-[; ;main.c: 9: void init_UART() {
-[p x PRICLKEN  =  ON     ]
+[; ;main.c: 9:     UARTInit(9600);
+[p x PLLCFG  =  OFF      ]
 "10
-[; ;main.c: 10: 
-[p x FCMEN  =  OFF       ]
+[; ;main.c: 10:     int t = 0;
+[p x PRICLKEN  =  ON     ]
 "11
-[; ;main.c: 11:     TRISCbits.TRISC6 = 0;
+[; ;main.c: 11:     int r;
+[p x FCMEN  =  OFF       ]
+"12
+[; ;main.c: 12: 
 [p x IESO  =  OFF        ]
-"14
-[; ;main.c: 14: 
-[p x PWRTEN  =  OFF      ]
 "15
-[; ;main.c: 15:     TXSTA1 = 0b00100100;
-[p x BOREN  =  SBORDIS   ]
+[; ;main.c: 15: 
+[p x PWRTEN  =  OFF      ]
 "16
-[; ;main.c: 16:     RCSTA1 = 0b10010000;
+[; ;main.c: 16:         UARTWriteByte(t%26+97);
+[p x BOREN  =  SBORDIS   ]
+"17
+[; ;main.c: 17: 
 [p x BORV  =  190        ]
-"19
-[; ;main.c: 19:     SPBRG1 = (1000000UL / (16UL * 9600)) - 1;
-[p x WDTEN  =  OFF       ]
 "20
-[; ;main.c: 20: }
+[; ;main.c: 20:         LCDGoto(0,0);
+[p x WDTEN  =  OFF       ]
+"21
+[; ;main.c: 21: 
 [p x WDTPS  =  32768     ]
-"23
-[; ;main.c: 23: void UARTWriteChar(char data) {
-[p x CCP2MX  =  PORTC1   ]
 "24
-[; ;main.c: 24:     while (!TXSTAbits.TRMT);
-[p x PBADEN  =  ON       ]
+[; ;main.c: 24:         LCDGoto(0,8);
+[p x CCP2MX  =  PORTC1   ]
 "25
-[; ;main.c: 25:     TXREG1 = data;
-[p x CCP3MX  =  PORTB5   ]
+[; ;main.c: 25: 
+[p x PBADEN  =  ON       ]
 "26
-[; ;main.c: 26: }
-[p x HFOFST  =  ON       ]
+[; ;main.c: 26:         LCDPutChar(r);
+[p x CCP3MX  =  PORTB5   ]
 "27
 [; ;main.c: 27: 
-[p x T3CMX  =  PORTC0    ]
+[p x HFOFST  =  ON       ]
 "28
-[; ;main.c: 28: 
-[p x P2BMX  =  PORTD2    ]
+[; ;main.c: 28:         t++;
+[p x T3CMX  =  PORTC0    ]
 "29
-[; ;main.c: 29: void display_counter(int count) {
+[; ;main.c: 29: 
+[p x P2BMX  =  PORTD2    ]
+"30
+[; ;main.c: 30:         _delay((unsigned long)((500)*(1000000UL/4000.0)));
 [p x MCLRE  =  EXTMCLR   ]
-"32
-[; ;main.c: 32:     LCDGoto(0, 1);
-[p x STVREN  =  ON       ]
 "33
-[; ;main.c: 33:     LCDWriteStr(buffer);
-[p x LVP  =  ON          ]
+[p x STVREN  =  ON       ]
 "34
-[; ;main.c: 34: }
+[p x LVP  =  ON          ]
+"35
 [p x XINST  =  OFF       ]
-"37
-[; ;main.c: 37: 
-[p x CP0  =  OFF         ]
 "38
-[; ;main.c: 38:     LCDInit();
-[p x CP1  =  OFF         ]
+[p x CP0  =  OFF         ]
 "39
-[; ;main.c: 39: 
-[p x CP2  =  OFF         ]
+[p x CP1  =  OFF         ]
 "40
-[; ;main.c: 40: 
+[p x CP2  =  OFF         ]
+"41
 [p x CP3  =  OFF         ]
-"43
-[; ;main.c: 43: 
-[p x CPB  =  OFF         ]
 "44
-[; ;main.c: 44:     display_message("UART 9600 bauds");
+[p x CPB  =  OFF         ]
+"45
 [p x CPD  =  OFF         ]
-"47
-[; ;main.c: 47:     int counter = 0;
-[p x WRT0  =  OFF        ]
 "48
-[; ;main.c: 48: 
-[p x WRT1  =  OFF        ]
+[p x WRT0  =  OFF        ]
 "49
-[; ;main.c: 49: 
-[p x WRT2  =  OFF        ]
+[p x WRT1  =  OFF        ]
 "50
-[; ;main.c: 50:     while (1) {
+[p x WRT2  =  OFF        ]
+"51
 [p x WRT3  =  OFF        ]
-"53
-[; ;main.c: 53: 
-[p x WRTC  =  OFF        ]
 "54
-[; ;main.c: 54: 
-[p x WRTB  =  OFF        ]
+[p x WRTC  =  OFF        ]
 "55
-[; ;main.c: 55:         counter++;
+[p x WRTB  =  OFF        ]
+"56
 [p x WRTD  =  OFF        ]
-"58
-[; ;main.c: 58:         _delay((unsigned long)((500)*(1000000UL/4000.0)));
-[p x EBTR0  =  OFF       ]
 "59
-[; ;main.c: 59: 
-[p x EBTR1  =  OFF       ]
+[p x EBTR0  =  OFF       ]
 "60
-[; ;main.c: 60: 
-[p x EBTR2  =  OFF       ]
+[p x EBTR1  =  OFF       ]
 "61
-[; ;main.c: 61:         UARTWriteChar((char)(counter + '0'));
+[p x EBTR2  =  OFF       ]
+"62
 [p x EBTR3  =  OFF       ]
-"64
+"65
 [p x EBTRB  =  OFF       ]
-"69
-[v _display_message `(v ~T0 @X0 1 ef1`*Cuc ]
-{
-[e :U _display_message ]
-[v _message `*Cuc ~T0 @X0 1 r1 ]
-[f ]
-"70
-[e ( _LCDClear ..  ]
-"71
-[e ( _LCDWriteStr (1 _message ]
-"72
-[e :UE 856 ]
-}
-"75
-[v _init_UART `(v ~T0 @X0 1 ef ]
-{
-[e :U _init_UART ]
-[f ]
-"77
-[e = . . _TRISCbits 0 6 -> -> 0 `i `uc ]
-"78
-[e = . . _TRISCbits 0 7 -> -> 1 `i `uc ]
-"81
-[e = _TXSTA1 -> -> 36 `i `uc ]
-"82
-[e = _RCSTA1 -> -> 144 `i `uc ]
-"85
-[e = _SPBRG1 -> - / -> 1000000 `ul * -> 16 `ul -> -> -> 9600 `i `l `ul -> -> -> 1 `i `l `ul `uc ]
-"86
-[e :UE 857 ]
-}
-"89
-[v _UARTWriteChar `(v ~T0 @X0 1 ef1`uc ]
-{
-[e :U _UARTWriteChar ]
-[v _data `uc ~T0 @X0 1 r1 ]
-[f ]
-"90
-[e $U 859  ]
-[e :U 860 ]
-[e :U 859 ]
-[e $ ! != -> . . _TXSTAbits 0 1 `i -> 0 `i 860  ]
-[e :U 861 ]
-"91
-[e = _TXREG1 -> _data `uc ]
-"92
-[e :UE 858 ]
-}
-"95
-[v _display_counter `(v ~T0 @X0 1 ef1`i ]
-{
-[e :U _display_counter ]
-[v _count `i ~T0 @X0 1 r1 ]
-[f ]
-"96
-[v _buffer `uc ~T0 @X0 -> 17 `i a ]
-"97
-[e ( _sprintf (1 , (. , &U _buffer :s 1C _count ]
-"98
-[e ( _LCDGoto (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
-"99
-[e ( _LCDWriteStr (1 -> &U _buffer `*Cuc ]
-"100
-[e :UE 862 ]
-}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"102
+"70
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"104
+"72
+[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
+"74
 [e ( _LCDInit ..  ]
-"107
-[e ( _init_UART ..  ]
-"110
-[e ( _display_message (1 :s 2C ]
-"113
-[v _counter `i ~T0 @X0 1 a ]
-[e = _counter -> 0 `i ]
-"116
-[e :U 865 ]
+"76
+[e ( _UARTInit (1 -> -> 9600 `i `ui ]
+"77
+[v _t `i ~T0 @X0 1 a ]
+[e = _t -> 0 `i ]
+"78
+[v _r `i ~T0 @X0 1 a ]
+"81
+[e :U 858 ]
 {
-"118
-[e ( _display_counter (1 _counter ]
-"121
-[e ++ _counter -> 1 `i ]
-"124
+"83
+[e ( _UARTWriteByte (1 -> + % _t -> 26 `i -> 97 `i `uc ]
+"85
+[e = _r -> ( _UARTReadByte ..  `i ]
+"87
+[e ( _LCDGoto (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
+"89
+[e ( _LCDWriteStr (1 :s 1C ]
+"91
+[e ( _LCDGoto (2 , -> -> 0 `i `uc -> -> 8 `i `uc ]
+"93
+[e ( _LCDPutChar (1 -> _r `uc ]
+"95
+[e ++ _t -> 1 `i ]
+"97
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 1000000 `ul `d .4000.0 `ul ]
-"127
-[e ( _UARTWriteChar (1 -> + -> _counter `ui -> 48 `ui `uc ]
-"128
+"98
 }
-[e :U 864 ]
-[e $U 865  ]
-[e :U 866 ]
-"129
-[e :UE 863 ]
+[e :U 857 ]
+[e $U 858  ]
+[e :U 859 ]
+"99
+[e :UE 856 ]
 }
-[p f _sprintf 8388736 ]
-[a 2C 85 65 82 84 32 57 54 48 48 32 98 97 117 100 115 0 ]
-[a 1C 67 111 109 112 116 101 117 114 58 32 37 100 0 ]
+[a 1C 67 111 109 112 116 101 117 114 58 32 0 ]

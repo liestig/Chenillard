@@ -1,6 +1,6 @@
 /* 
  * File:   main.c
- * Author: Lies
+ * Author: Liès TIGUERCHA, Clement MABILE, Théo MOUISSE
  *
  * Created on January 26, 2024, 8:56 AM
  */
@@ -81,33 +81,31 @@
 bool increase = true; // Variable pour contrôler l'augmentation ou la diminution du rapport cyclique
 
 // Fonction de configuration du Timer 2 pour la génération de PWM
-void configurePWM() {
-    // Configurer la broche RC2 (CCP1) en sortie
-    TRISCbits.TRISC2 = 0;
-    
+void configurePWM() { 
     // Configurer le rapport cyclique de la PWM (50%)
     CCP1CONbits.CCP1M = 0b1100; // Mode PWM
-    CCP1CONbits.DC1B = 0; // Bits les moins significatifs du rapport cyclique
     CCPR1L = 128; // Bits les plus significatifs du rapport cyclique
-    
-    // Configurer le Timer 2 pour la PWM
-    T2CON = 0b00000100; // Pas de prédiviseur, pas de postdiviseur, TMR2ON=1
-}
+    // Désactivation du Timer 2 pendant la configuration
+    T2CONbits.TMR2ON = 0;
+    // Configuration du diviseur de prédivision à 1:1 (pas de prescaler)
+    T2CONbits.T2CKPS = 0b00;
+    // Aucun postscaler spécifié
+    T2CONbits.T2OUTPS = 0b0000;
+    // Définition de la broche RC2 en tant que sortie pour le signal PWM
+    TRISCbits.TRISC2 = OUTP;
+    // Activation du Timer 2 après la configuration
+    T2CONbits.TMR2ON = 1;
 
+}
 void main() {
     configurePWM(); // Configuration initiale de la PWM
     
     while(1) {
-        if (increase) {
-            CCPR1L = 128; // Si l'augmentation est activée, définir le rapport cyclique à 128
-        } else {
-            CCPR1L = 64; // Sinon, définir le rapport cyclique à 64
-        }
-        
-        // Changer la direction (inversion)
-        increase = !increase;
-        
-        // Ajouter une petite temporisation pour créer un effet de clignotement
-        __delay_ms(500); // Temporisation de 500 ms (vous pouvez ajuster cette valeur selon vos besoins)
+        PR2 = 71;
+        CCPR1L = 36;
+        __delay_ms(1000);
+        PR2 = 142;
+        CCPR1L = 71;
+        __delay_ms(1000);
     }
 }
