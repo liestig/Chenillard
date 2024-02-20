@@ -1,6 +1,6 @@
 /* 
  * File:   main.c
- * Author: Lies
+ * Author: Liès TIGUERCHA, Clement MABILE, Théo MOUISSE
  *
  * Created on January 26, 2024, 8:56 AM
  */
@@ -10,9 +10,6 @@
 #include <xc.h>
 #include "general.h"
 #include "leds.h"
-//#include "i2c.h"
-//#include "lcd.h"
-
 
 // PIC18F46K22 Configuration Bit Settings
 
@@ -85,42 +82,53 @@
  * 
  */
 void configureTimer0() {
-    // Configuration de Timer0
-    T0CON = 0b10000011; // 16-bit, pas de prédiviseur, front montant, source interne
-    TMR0L = 49911 & 0xFF;   // // 65536 - (62500 / 4) + Les 8 bits les moins significatifs
-    TMR0H = (49911 >> 8) & 0xFF;  // // 65536 - (62500 / 4) + Les 8 bits les plus significatifs
-    INTCONbits.TMR0IF = 0;           // Réinitialise le flag d'overflow
+    T0CONbits.T08BIT = 0; // 16 bit timer/counter
+    T0CONbits.T0CS = 0; // internal instruction cycle clock
+    T0CONbits.T0SE = 0; // front montant
+    T0CONbits.PSA = 0; //pas de prescaler 
+    T0CONbits.T0PS = 000; 
+    
+    T0CONbits.TMR0ON = 1; // enable timer0 
+    
+    TMR0L = 0xEE;   // Les 8 bits les moins significatifs
+    TMR0H = 0xDC;// Les 8 bits les plus significatifs
 }
 
 void delay_1s_with_timer() {
-    while (!INTCONbits.TMR0IF) {
-        // Attendez que le flag d'overflow du Timer0 soit défini
+   while (1) 
+    {
+        if (TMR0IF == 1) //si timer fini de compter
+        {
+            TMR0IF = 0; //flag a 0 pour redem le timer
+            return; 
+        }
     }
-    INTCONbits.TMR0IF = 0; // Réinitialisez le flag d'overflow pour la prochaine temporisation
-    TMR0L = 49911 & 0xFF;   // Les 8 bits les moins significatifs
-    TMR0H = (49911 >> 8) & 0xFF;  // Les 8 bits les plus significatifs
     }
 
-void turnOnLED(int ledNumber) {
-    switch (ledNumber) {
-        case 0:
-            LED0_STATE = 1;
-            break;
-        case 1:
-            LED1_STATE = 1;
-            break;
-        case 2:
-            LED2_STATE = 1;
-            break;
-        case 3:
-            LED3_STATE = 1;
-            break;
-        default:
-            // Invalid LED number
-            break;
-    }
+void turnOnLED() {
+    while (1) {
+                LED3_STATE = 0;
+                LED0_STATE = 1;
+
+                delay_1s_with_timer();
+
+                LED0_STATE = 0;
+                LED1_STATE = 1;
+
+                delay_1s_with_timer();
+
+                LED1_STATE = 0;
+                LED2_STATE = 1;
+
+                delay_1s_with_timer();
+
+                LED2_STATE = 0;
+                LED3_STATE = 1;
+
+                delay_1s_with_timer();
+      }
 }
-
+/**/
 void turnOffLEDs() {
     LED0_STATE = 0;
     LED1_STATE = 0;
@@ -140,11 +148,7 @@ int main() {
     configureTimer0(); // Configure le Timer0 pour une temporisation de 1 seconde
 
     while (1) {
-        for (int i = 0; i < 4; i++) {
-            turnOnLED(i);
-            delay_1s_with_timer(); // Utilisez le Timer0 pour la temporisation
-            turnOffLEDs();
-        }
+        turnOnLED();
     }
 
     return 0;

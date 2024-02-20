@@ -1,6 +1,6 @@
 /* 
  * File:   main.c
- * Author: Liès TIGUERCHA, Clement MABILE, Théo MOUISSE
+ * Author: Lies
  *
  * Created on January 26, 2024, 8:56 AM
  */
@@ -10,6 +10,9 @@
 #include <xc.h>
 #include "general.h"
 #include "leds.h"
+//#include "i2c.h"
+//#include "lcd.h"
+
 
 // PIC18F46K22 Configuration Bit Settings
 
@@ -81,54 +84,36 @@
 /*
  * 
  */
-void configureTimer0() {
-    T0CONbits.T08BIT = 0; // 16 bit timer/counter
-    T0CONbits.T0CS = 0; // internal instruction cycle clock
-    T0CONbits.T0SE = 0; // front montant
-    T0CONbits.PSA = 0; //pas de prescaler 
-    T0CONbits.T0PS = 000; 
-    
-    T0CONbits.TMR0ON = 1; // enable timer0 
-    
-    TMR0L = 0xEE;   // Les 8 bits les moins significatifs
-    TMR0H = 0xDC;// Les 8 bits les plus significatifs
+void delay__1s() {
+    unsigned int iterations = 250;  // (1 seconde) / (4 ms par itération)
+
+    for (unsigned int i = 0; i < iterations; i++) {
+        // Attendre 4 µs à chaque itération (le temps d'exécution d'une instruction)
+        //__delay_us(400);
+        __delay_ms(4);
+    }
 }
 
-void delay_1s_with_timer() {
-   while (1) 
-    {
-        if (TMR0IF == 1) //si timer fini de compter
-        {
-            TMR0IF = 0; //flag a 0 pour redem le timer
-            return; 
-        }
+void turnOnLED(int ledNumber) {
+    switch (ledNumber) {
+        case 0:
+            LED0_STATE = 1;
+            break;
+        case 1:
+            LED1_STATE = 1;
+            break;
+        case 2:
+            LED2_STATE = 1;
+            break;
+        case 3:
+            LED3_STATE = 1;
+            break;
+        default:
+            // Invalid LED number
+            break;
     }
-    }
-
-void turnOnLED() {
-    while (1) {
-                LED3_STATE = 0;
-                LED0_STATE = 1;
-
-                delay_1s_with_timer();
-
-                LED0_STATE = 0;
-                LED1_STATE = 1;
-
-                delay_1s_with_timer();
-
-                LED1_STATE = 0;
-                LED2_STATE = 1;
-
-                delay_1s_with_timer();
-
-                LED2_STATE = 0;
-                LED3_STATE = 1;
-
-                delay_1s_with_timer();
-      }
 }
-/**/
+
 void turnOffLEDs() {
     LED0_STATE = 0;
     LED1_STATE = 0;
@@ -145,12 +130,13 @@ int main() {
 
     turnOffLEDs(); // Ensure all LEDs are initially off
 
-    configureTimer0(); // Configure le Timer0 pour une temporisation de 1 seconde
-
     while (1) {
-        turnOnLED();
+        for (int i = 0; i < 4; i++) {
+            turnOnLED(i);
+            delay__1s();
+            turnOffLEDs();
+        }
     }
 
     return 0;
 }
-

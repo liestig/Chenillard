@@ -9821,7 +9821,13 @@ typedef int INT16_T;
 
 # 1 "./leds.h" 1
 # 12 "main.c" 2
-# 22 "main.c"
+
+
+
+
+
+
+
 #pragma config FOSC = INTIO7
 #pragma config PLLCFG = OFF
 #pragma config PRICLKEN = ON
@@ -9888,43 +9894,51 @@ typedef int INT16_T;
 
 
 void configureTimer0() {
+    T0CONbits.T08BIT = 0;
+    T0CONbits.T0CS = 0;
+    T0CONbits.T0SE = 0;
+    T0CONbits.PSA = 0;
+    T0CONbits.T0PS = 000;
 
-    T0CON = 0b10000011;
-    unsigned int initial_value = 49911;
+    T0CONbits.TMR0ON = 1;
 
-    TMR0L = 49911 & 0xFF;
-    TMR0H = (49911 >> 8) & 0xFF;
-
-    INTCONbits.TMR0IF = 0;
+    TMR0L = 0xEE;
+    TMR0H = 0xDC;
 }
 
 void delay_1s_with_timer() {
-    while (!INTCONbits.TMR0IF) {
-
+   while (1)
+    {
+        if (TMR0IF == 1)
+        {
+            TMR0IF = 0;
+            return;
+        }
     }
-    INTCONbits.TMR0IF = 0;
-    TMR0L = 49911 & 0xFF;
-    TMR0H = (49911 >> 8) & 0xFF;
     }
 
-void turnOnLED(int ledNumber) {
-    switch (ledNumber) {
-        case 0:
-            LATBbits.LATB0 = 1;
-            break;
-        case 1:
-            LATBbits.LATB1 = 1;
-            break;
-        case 2:
-            LATBbits.LATB2 = 1;
-            break;
-        case 3:
-            LATBbits.LATB3 = 1;
-            break;
-        default:
+void turnOnLED() {
+    while (1) {
+                LATBbits.LATB3 = 0;
+                LATBbits.LATB0 = 1;
 
-            break;
-    }
+                delay_1s_with_timer();
+
+                LATBbits.LATB0 = 0;
+                LATBbits.LATB1 = 1;
+
+                delay_1s_with_timer();
+
+                LATBbits.LATB1 = 0;
+                LATBbits.LATB2 = 1;
+
+                delay_1s_with_timer();
+
+                LATBbits.LATB2 = 0;
+                LATBbits.LATB3 = 1;
+
+                delay_1s_with_timer();
+      }
 }
 
 void turnOffLEDs() {
@@ -9946,11 +9960,7 @@ int main() {
     configureTimer0();
 
     while (1) {
-        for (int i = 0; i < 4; i++) {
-            turnOnLED(i);
-            delay_1s_with_timer();
-            turnOffLEDs();
-        }
+        turnOnLED();
     }
 
     return 0;

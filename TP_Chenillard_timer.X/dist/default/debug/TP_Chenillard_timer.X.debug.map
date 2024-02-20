@@ -6,10 +6,10 @@ Linker command line:
   --edf=C:\Program Files\Microchip\xc8\v2.45\pic\dat\20230818022343_en.msgs \
   -cn -h+dist/default/debug\TP_Chenillard_timer.X.debug.sym \
   --cmf=dist/default/debug\TP_Chenillard_timer.X.debug.cmf -z -Q18F46K22 \
-  -oC:\Users\Lies\AppData\Local\Temp\xcAs1uek.\driver_tmp_3.o \
+  -oC:\Users\Lies\AppData\Local\Temp\xcAs1sqs.\driver_tmp_3.o \
   --defsym=__MPLAB_BUILD=1 --fixupoverflow=error \
   -Mdist/default/debug/TP_Chenillard_timer.X.debug.map \
-  --md=C:\Users\Lies\AppData\Local\Temp\xcAs1uek.\driver_tmp_0.dat -E1 \
+  --md=C:\Users\Lies\AppData\Local\Temp\xcAs1sqs.\driver_tmp_0.dat -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ACODE=00h-0FFFFh -ACONST=00h-0FFFFh \
   -ASMALLCONST=01000h-010FFhx240 -AMEDIUMCONST=01000h-0FFFFh \
   -ACOMRAM=01h-05Fh -AABS1=00h-0F37h -ABIGRAM=01h-0F37h \
@@ -29,7 +29,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\Lies\AppData\Local\Temp\xcAs1uek.\driver_tmp_9.o \
+  C:\Users\Lies\AppData\Local\Temp\xcAs1sqs.\driver_tmp_9.o \
   dist/default/debug\TP_Chenillard_timer.X.debug.o 
 
 Object code version is 3.11
@@ -39,29 +39,28 @@ Machine type is 18F46K22
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Lies\AppData\Local\Temp\xcAs1uek.\driver_tmp_9.o
+C:\Users\Lies\AppData\Local\Temp\xcAs1sqs.\driver_tmp_9.o
                 config                           300000   300000        E        0       4
                 init                                  0        0        4        0       0
 dist/default/debug\TP_Chenillard_timer.X.debug.o
                 config                           300000   300000        E        0       4
                 smallconst                         1000     1000        2      800       0
-                text4                              10CC     10CC       10      801       0
-                text3                              10B2     10B2       1A      801       0
-                text2                              10E6     10E6        A      801       0
-                text1                              1002     1002       5A      801       0
-                text0                              105C     105C       56      801       0
-                cstackCOMRAM                          1        1        6        1       1
-                cinit                              10DC     10DC        A      801       0
+                text4                              1046     1046       18      801       0
+                text3                              1070     1070        A      801       0
+                text2                              105E     105E       12      801       0
+                text1                              1002     1002       26      801       0
+                text0                              1028     1028       1E      801       0
+                cinit                              107A     107A        6      801       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   CODE           
                 init                                  0        0        4         0
-                text4                              10CC     10CC       10         0
-                text3                              10B2     10B2       1A         0
-                text2                              10E6     10E6        A         0
-                text1                              1002     1002       5A         0
-                text0                              105C     105C       56         0
-                cinit                              10DC     10DC        A         0
+                text4                              1046     1046       18         0
+                text3                              1070     1070        A         0
+                text2                              105E     105E       12         0
+                text1                              1002     1002       26         0
+                text0                              1028     1028       1E         0
+                cinit                              107A     107A        6         0
 
         CLASS   CONST          
 
@@ -71,7 +70,6 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   MEDIUMCONST    
 
         CLASS   COMRAM         
-                cstackCOMRAM                          1        1        6         1
 
         CLASS   ABS1           
 
@@ -133,9 +131,8 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class
 
                 reset_vec                      000000  000004  000004         0       0  CODE    
-                cstackCOMRAM                   000001  000006  000007         1       1  COMRAM  
                 smallconst                     001000  000002  001002       800       0  SMALLCON
-                text1                          001002  0000EE  0010F0       801       0  CODE    
+                text1                          001002  00007E  001080       801       0  CODE    
 
 
 UNUSED ADDRESS RANGES
@@ -157,26 +154,26 @@ UNUSED ADDRESS RANGES
         BANK7            000700-0007FF              100
         BANK8            000800-0008FF              100
         BANK9            000900-0009FF              100
-        BIGRAM           000007-000F37              F31
+        BIGRAM           000001-000F37              F37
         BIGSFR           000F38-000FFF               C8
         CODE             000004-000FFF              FFC
-                         0010F0-00FFFF             EF10
-        COMRAM           000007-00005F               59
+                         001080-00FFFF             EF80
+        COMRAM           000001-00005F               5F
         CONST            000004-000FFF              FFC
-                         0010F0-00FFFF             EF10
+                         001080-00FFFF             EF80
         EEDATA           F00000-F003FF              400
         IDLOC            200000-200007                8
-        MEDIUMCONST      0010F0-00FFFF             EF10
+        MEDIUMCONST      001080-00FFFF             EF80
         RAM              000060-000F37              100
         SFR              000F38-000FFF               28
-        SMALLCONST       0010F0-00FFFF              100
+        SMALLCONST       001080-00FFFF              100
 
                                   Symbol Table
 
-_INTCONbits                  (abs)        000FF2
 _LATBbits                    (abs)        000F8A
-_T0CON                       (abs)        000FD5
+_T0CONbits                   (abs)        000FD5
 _TMR0H                       (abs)        000FD7
+_TMR0IF                      (abs)        007F92
 _TMR0L                       (abs)        000FD6
 _TRISBbits                   (abs)        000F93
 __HRAM                       (abs)        000000
@@ -241,8 +238,8 @@ __Hreset_vec                 reset_vec    000000
 __Hrparam                    rparam       000000
 __Hsfr                       sfr          000000
 __Hsmallconst                smallconst   001002
-__Hspace_0                   (abs)        0010F0
-__Hspace_1                   (abs)        000007
+__Hspace_0                   (abs)        001080
+__Hspace_1                   (abs)        000000
 __Hspace_2                   (abs)        000000
 __Hspace_4                   (abs)        60000E
 __Hstack                     stack        000000
@@ -329,8 +326,8 @@ __Ltext1                     text1        000000
 __Ltext2                     text2        000000
 __Ltext3                     text3        000000
 __Ltext4                     text4        000000
-__S0                         (abs)        0010F0
-__S1                         (abs)        000007
+__S0                         (abs)        001080
+__S1                         (abs)        000000
 __S4                         (abs)        000000
 __S5                         (abs)        000000
 ___heap_hi                   (abs)        000000
@@ -347,59 +344,57 @@ ___sp                        stack        000000
 ___stack_hi                  stack        000000
 ___stack_lo                  stack        000000
 __accesstop                  (abs)        000060
-__activetblptr               (abs)        000002
-__end_of__initialization     cinit        0010DC
-__end_of_configureTimer0     text4        0010DC
-__end_of_delay_1s_with_timer text3        0010CC
-__end_of_main                text0        0010B2
-__end_of_turnOffLEDs         text2        0010F0
-__end_of_turnOnLED           text1        00105C
-__initialization             cinit        0010DC
+__activetblptr               (abs)        000000
+__end_of__initialization     cinit        00107A
+__end_of_configureTimer0     text4        00105E
+__end_of_delay_1s_with_timer text2        001070
+__end_of_main                text0        001046
+__end_of_turnOffLEDs         text3        00107A
+__end_of_turnOnLED           text1        001028
+__initialization             cinit        00107A
 __mediumconst                mediumconst  000000
-__pcinit                     cinit        0010DC
-__pcstackCOMRAM              cstackCOMRAM 000001
+__pcinit                     cinit        00107A
+__pcstackCOMRAM              cstackCOMRAM 000000
 __psmallconst                smallconst   001000
-__ptext0                     text0        00105C
+__ptext0                     text0        001028
 __ptext1                     text1        001002
-__ptext2                     text2        0010E6
-__ptext3                     text3        0010B2
-__ptext4                     text4        0010CC
+__ptext2                     text2        00105E
+__ptext3                     text3        001070
+__ptext4                     text4        001046
 __ramtop                     ramtop       001000
 __smallconst                 smallconst   001000
-_configureTimer0             text4        0010CC
-_delay_1s_with_timer         text3        0010B2
-_main                        text0        00105C
-_turnOffLEDs                 text2        0010E6
+_configureTimer0             text4        001046
+_delay_1s_with_timer         text2        00105E
+_main                        text0        001028
+_turnOffLEDs                 text3        001070
 _turnOnLED                   text1        001002
-end_of_initialization        cinit        0010DC
+end_of_initialization        cinit        00107A
 intlevel0                    text         000000
 intlevel1                    text         000000
 intlevel2                    text         000000
 intlevel3                    text         000000
 isa$std                      (abs)        000001
 isa$xinst                    (abs)        000000
-main@i                       cstackCOMRAM 000005
 stackhi                      (abs)        000000
 stacklo                      (abs)        000000
 start                        init         000000
-start_initialization         cinit        0010DC
-turnOnLED@ledNumber          cstackCOMRAM 000001
+start_initialization         cinit        00107A
 
 
 MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 shared
-		__initialization		CODE           	10DC	0000	1
+		__initialization		CODE           	107A	0000	1
 
 shared estimated size: 1
 
 main.c
-		_turnOffLEDs   		CODE           	10E6	0000	10
-		_main          		CODE           	105C	0000	86
-		_configureTimer0		CODE           	10CC	0000	16
-		_delay_1s_with_timer		CODE           	10B2	0000	26
-		_turnOnLED     		CODE           	1002	0000	90
+		_turnOffLEDs   		CODE           	1070	0000	10
+		_main          		CODE           	1028	0000	30
+		_configureTimer0		CODE           	1046	0000	24
+		_delay_1s_with_timer		CODE           	105E	0000	18
+		_turnOnLED     		CODE           	1002	0000	38
 
-main.c estimated size: 228
+main.c estimated size: 120
 
