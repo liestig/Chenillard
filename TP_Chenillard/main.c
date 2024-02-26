@@ -1,8 +1,8 @@
-/* 
+/*
  * File:   main.c
- * Author: Lies
+ * Author: Liès TIGUERCHA, Clement MABILE, Théo MOUISSE
  *
- * Created on January 26, 2024, 8:56 AM
+ * Created on 5 février 2024, 08:53
  */
 
 #include <stdio.h>

@@ -1,3 +1,10 @@
+/*
+ * File:   main.c
+ * Author: Liès TIGUERCHA, Clement MABILE, Théo MOUISSE
+ *
+ * Created on 5 février 2024, 08:53
+ */
+
 #include <xc.h>
 #include <stdio.h> // Pour sprintf
 #include "lcd.h"
